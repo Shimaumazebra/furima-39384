@@ -25,11 +25,11 @@
 | name                  | string     | null: false                        |
 | description           | text       | null: false                        |
 | price                 | integer    | null: false                        |
-| category-id           | integer    | null: false                        |
-| condition-id          | integer    | null: false                        |
-| prefecture-id         | integer    | null: false                        |
-| estimated_shipping-id | integer    | null: false                        |
-| postage_fee-id        | integer    | null: false                        |
+| category_id           | integer    | null: false                        |
+| condition_id          | integer    | null: false                        |
+| prefecture_id         | integer    | null: false                        |
+| estimated_shipping_id | integer    | null: false                        |
+| postage_fee_id        | integer    | null: false                        |
 
 ### Association
 
@@ -54,7 +54,7 @@
 | ------------------ | ---------- | ---------------------------------- |
 | purchase           | references | null: false, foreign_key: true     |
 | post_code          | string     | null: false                        |
-| prefecture-id      | integer    | null: false                        |
+| prefecture_id      | integer    | null: false                        |
 | city               | string     | null: false                        |
 | building_name      | string     |                                    |
 | phone_num          | integer    | null: false                        |
