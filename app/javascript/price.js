@@ -1,4 +1,4 @@
-window.addEventListener('load', function(){
+window.addEventListener('mouseover', function(){
   let price = document.getElementById("item-price")
   let tax_price = document.getElementById("add-tax-price")
   let profit = document.getElementById("profit")
