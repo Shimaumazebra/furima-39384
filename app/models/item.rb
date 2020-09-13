@@ -15,18 +15,12 @@ class Item < ApplicationRecord
     validates :name
     validates :image
     validates :description
-    validates :category_id
-    validates :condition_id
-    validates :prefecture_id
-    validates :price
-    validates :estimated_shipping_id
-    validates :postage_fee_id
+    validates :category_id, numericality: { other_than: 0, message: "can't be blank" }
+    validates :condition_id, numericality: { other_than: 0, message: "can't be blank" }
+    validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
+    validates :price, numericality: { with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters.'}
+    validates :estimated_shipping_id, numericality: { other_than: 0, message: "can't be blank" }
+    validates :postage_fee_id, numericality: { other_than: 0, message: "can't be blank" }
   end
-  validates :category_id, numericality: { other_than: 0, message: "can't be blank" }
-  validates :condition_id, numericality: { other_than: 0, message: "can't be blank" }
-  validates :estimated_shipping_id, numericality: { other_than: 0, message: "can't be blank" }
-  validates :postage_fee_id, numericality: { other_than: 0, message: "can't be blank" }
-  validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
-  validates :price, numericality: { with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters.'}
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is out of setting range'}
 end
