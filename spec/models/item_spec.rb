@@ -4,7 +4,7 @@ RSpec.describe Item, type: :model do
   describe '商品出品情報の保存' do
     before do
       @user = FactoryBot.create(:user)
-      @item = FactoryBot.build(:item, user_id:@user.id)
+      @item = FactoryBot.build(:item, user_id: @user.id)
     end
 
     it 'すべての値が正しく入力されていれば保存できること' do
@@ -13,7 +13,7 @@ RSpec.describe Item, type: :model do
     it 'user_idが空だと保存できないこと' do
       @item.user_id = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("User must exist")
+      expect(@item.errors.full_messages).to include('User must exist')
     end
     it 'nameが空だと保存できないこと' do
       @item.name = nil
@@ -53,17 +53,17 @@ RSpec.describe Item, type: :model do
     it 'priceが全角数字だと保存できないこと' do
       @item.price = '３０００'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is invalid. Input half-width characters.")
+      expect(@item.errors.full_messages).to include('Price is invalid. Input half-width characters.')
     end
     it 'priceが300円未満では保存できないこと' do
       @item.price = 200
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is out of setting range")
+      expect(@item.errors.full_messages).to include('Price is out of setting range')
     end
     it 'priceが9,999,999を超過すると保存できないこと' do
-      @item.price = 10000000
+      @item.price = 10_000_000
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is out of setting range")
+      expect(@item.errors.full_messages).to include('Price is out of setting range')
     end
     it 'estimated_shippingを選択していないと保存できないこと' do
       @item.estimated_shipping_id = 0
