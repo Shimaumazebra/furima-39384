@@ -29,6 +29,7 @@ class ItemsController < ApplicationController
     redirect_to root_path
     else
     redirect_to root_path, alert: "削除が失敗しました"
+    end
   end
 
   private
