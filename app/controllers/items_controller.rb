@@ -23,6 +23,14 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def destroy
+    item = Item.find(params[:id])
+    if item.destroy
+    redirect_to root_path
+    else
+    redirect_to root_path, alert: "削除が失敗しました"
+  end
+
   private
 
   def item_params
