@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
+  before_action :set_item, only: [:show, :edit, :update]
 
   def index
-    @items = Item.all.order("created_at DESC")
+    @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -20,29 +21,26 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def destroy
     item = Item.find(params[:id])
     if item.destroy
-    redirect_to root_path
+      redirect_to root_path
     else
-    redirect_to root_path, alert: "削除が失敗しました"
+      redirect_to root_path, alert: '削除が失敗しました'
     end
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
     @item.update(item_params)
     if @item.valid?
-    redirect_to root_path
+      redirect_to root_path
     else
-    render 'edit'
+      render 'edit'
     end
   end
 
@@ -50,5 +48,9 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :image, :description, :price, :category_id, :condition_id, :prefecture_id, :estimated_shipping_id, :postage_fee_id).merge(user_id: current_user.id)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
