@@ -1,7 +1,7 @@
 class OrderAddress
 
   include ActiveModel::Model
-  attr_accessor :name, :user_id, :token, :item_id, :post_code, :prefecture_id, :city, :address, :building_name, :phone_num
+  attr_accessor :name, :order_id, :user_id, :token, :item_id, :post_code, :prefecture_id, :city, :address, :building_name, :phone_num
   
   with_options presence: true do
     validates :token
@@ -10,11 +10,11 @@ class OrderAddress
     validates :address
     validates :city
     validates :phone_num, numericality: { with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters.' }
-    end
+  end
  
   def save
     # 注文の情報を保存
-    order = Order.create(user_id: user_id, item_id: item_id)
-    Address.create(order_id: order.id, post_code: post_code, prefecture_id: prefecture_id, address: address, city: city, building_name: building_name, phone_num: phone_num)
+    order = Order.create!(user_id: user_id, item_id: item_id)
+    Address.create!(order_id: order.id, post_code: post_code, prefecture_id: prefecture_id, address: address, city: city, building_name: building_name, phone_num: phone_num)
   end
 end
