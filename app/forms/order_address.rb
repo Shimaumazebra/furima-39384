@@ -9,7 +9,9 @@ class OrderAddress
     validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
     validates :address
     validates :city
-    validates :phone_num, numericality: { with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters.' }
+    validates :phone_num, numericality: { with: /\A[0-9]\z/, message: 'is invalid. Input half-width characters' }
+    validates :phone_num, length: { maximum: 11 }
+    validates :phone_num, numericality: { only_integer: true}
   end
  
   def save

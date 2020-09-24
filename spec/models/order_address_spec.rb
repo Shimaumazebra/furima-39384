@@ -34,10 +34,24 @@ RSpec.describe OrderAddress, type: :model do
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("Address can't be blank")
     end
+    it 'building_nameは空でも保存できること' do
+      @order_address.building_name = nil
+      expect(@order_address).to be_valid
+    end
     it 'phone_numが空だと保存できないこと' do
       @order_address.phone_num = nil
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("Phone num can't be blank")
+    end
+    it 'phone_numにハイフンがあると保存できないこと' do
+      @order_address.phone_num = '111-222-333'
+      @order_address.valid?
+      expect(@order_address.errors.full_messages).to include("Phone num is not a number")
+    end
+    it 'phone_numが12文字以上だと保存できないこと' do
+      @order_address.phone_num = '111122223333'
+      @order_address.valid?
+      expect(@order_address.errors.full_messages).to include("Phone num is too long (maximum is 11 characters)")
     end
   end
 end
