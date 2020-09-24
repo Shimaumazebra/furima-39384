@@ -46,7 +46,7 @@ RSpec.describe OrderAddress, type: :model do
     it 'phone_numにハイフンがあると保存できないこと' do
       @order_address.phone_num = '111-222-333'
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include("Phone num is not a number")
+      expect(@order_address.errors.full_messages).to include("Phone num is invalid. Input half-width characters")
     end
     it 'phone_numが12文字以上だと保存できないこと' do
       @order_address.phone_num = '111122223333'
