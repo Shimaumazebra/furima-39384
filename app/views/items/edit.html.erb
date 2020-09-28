@@ -73,7 +73,7 @@ app/assets/stylesheets/items/new.css %>
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:postage_fee_id, Postage.all, :id, :name, {}, {class:"select-box", id:"postage_fee"}) %>
+        <%= f.collection_select(:postage_id, Postage.all, :id, :name, {}, {class:"select-box", id:"postage_fee"}) %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
@@ -83,7 +83,7 @@ app/assets/stylesheets/items/new.css %>
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:estimated_shipping_id, Estimated.all, :id, :name, {}, {class:"select-box", id:"estimated_shipping"}) %>
+        <%= f.collection_select(:estimated_id, Estimated.all, :id, :name, {}, {class:"select-box", id:"estimated_shipping"}) %>
       </div>
     </div>
     <%# /配送について %>
