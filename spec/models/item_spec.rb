@@ -66,12 +66,12 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include('Price is out of setting range')
     end
     it 'estimated_shippingを選択していないと保存できないこと' do
-      @item.estimated_shipping_id = 0
+      @item.estimated_id = 0
       @item.valid?
       expect(@item.errors.full_messages).to include("Estimated shipping can't be blank")
     end
     it 'postage_feeを選択していないと保存できないこと' do
-      @item.postage_fee_id = 0
+      @item.postage_id = 0
       @item.valid?
       expect(@item.errors.full_messages).to include("Postage fee can't be blank")
     end
